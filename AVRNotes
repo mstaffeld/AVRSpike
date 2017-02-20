@@ -1,0 +1,21 @@
+
+Be Familiar With: 
+- Hex
+- Logic Unary, (And, Or, Not, Xor)
+- Registers 
+- ADC
+- Baud Rates 
+- Timers 
+- .hex (The machine code the mircrocontroller will use.)
+
+
+DDRx is the data direction register - in or out
+PORTx is the state of the pin - on or off
+
+DDRB - B port 
+0000 0001 
+
+PORTB - 
+0000 0000 - off 
+0000 0001 - on 
+
