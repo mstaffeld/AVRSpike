@@ -1,12 +1,113 @@
 
 Be Familiar With: 
-- Hex
+- Hexidecimal and Binary 
 - Logic Unary, (And, Or, Not, Xor)
 - Registers 
 - ADC
 - Baud Rates 
 - Timers 
 - .hex (The machine code the mircrocontroller will use.)
+- PORT (Ports are usually groups of pins, sometimes 8 pins)
+- bitwise shift operators (>> right shift, << left shift)
+- bitwise or operator (| pipe)
+- Resistors, bits 
+- Microcontroller architecture, memory layout, hardware layout
+- assembly  
+
+Education Journey:
+
+Learnings from AVR C Basics: 
+https://www.youtube.com/watch?v=024f0NX2FLs
+
+| 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
+| 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+
+myVariable = 0b00000001 << 2 
+myVariable becomes 0b00000100
+
+Hexidecimal to binary
+Binary to Hexidecimal
+
+Hexidecimal: 0x01
+Binary: 0000 0000 0000 0001
+
+We will set PORTA by OR if there is an existing bit
+This: 
+```
+PORTA = PORTA | (0x01 << 2)
+```
+Becomes: 
+```
+PORTA |= (0x01 << 2)
+```
+
+Resistors (have names, and bits have names):
+Name: DDRA 
+Bits: DDA7 | DDA 6 | DDA 5 | DDA4 | DDA3 | DDA2 | DDA1 | DDA0
+
+# Clearing a bit:
+| 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
+| 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 |
+
+Let's clear the bit at position 1 and keep existing other values. 
+
+PORTA is 10101010
+Get a new (0x01) (0b00000001)
+Shift the first bit to the left, once (0x01 << 1):
+Result: (0b00000010)
+Now invert the new shifted hex ~(0x01 << 1):
+Result: (0b11111101)
+Now, & the existing PORTA values with the new shifted hex PORTA &= ~(0x01 << 1)
+
+PORTA &= ~(0x01<<1)
+
+~ - is the bitwise not operator, bitwise invert operator
+& - is the and operator, if 0 & 0 = 0, if 1 & 0 = 0, if 1 & 1 = 1 
+
+C-Code Time:
+```
+
+```
+
+# Data Types
+
+RAM Matters since there is only a little bit. 
+Be careful in defining data types. 
+
+Common Data Types:
+- Unsigned char (8 bits, 1 byte, (2^8-1), 0 - 255 decimal)
+    Meant to store ASCII characters
+```
+    unsigned char myLetter = 'A';
+    unsigned char myNumber = 200;
+    unsigned char myLetterHex = 0xFF;
+    unsigned char myLetterBin = 0b00010001;
+
+```
+- 
+
+# Data Structures
+
+
+
+# c printf 
+https://www.tutorialspoint.com/c_standard_library/c_function_printf.htm
+
+
+Todo:
+
+Instead of using the bit position, you can use the bit name. 
+
+
+
+
+
+# Need to still learn 
+- How to mock, drive the avr stuff without pushing to hardware
+- How to debug even the basics 
+- Really understand Hexadecimal and binary conversion (write the conversion util)
+- avc-gcc compiles c to assembly, then the hex file
+- memory
 
 
 DDRx is the data direction register - in or out
@@ -18,4 +119,5 @@ DDRB - B port
 PORTB - 
 0000 0000 - off 
 0000 0001 - on 
+
 
